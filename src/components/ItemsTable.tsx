@@ -1,10 +1,9 @@
-import { Item } from "../services/fakeItemService";
+import { useState } from "react";
+import { getItems } from "../services/fakeItemService";
 
-interface Props {
-  items: Item[];
-}
+function ItemsTable() {
+  const [items, setItems] = useState(getItems());
 
-function ItemsTable({ items }: Props) {
   return (
     <>
       <table className="table table-dark table-bordered border-primary ">
