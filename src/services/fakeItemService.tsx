@@ -17,7 +17,6 @@ export interface ItemFormData {
 }
 
 const items: Item[] = [
-  // Furniture
   {
     _id: "i1",
     name: "Billy Bookcase",
