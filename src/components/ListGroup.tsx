@@ -1,7 +1,18 @@
-import { getCategories } from "../services/fakeCategoryService";
+import { Category } from "../services/fakeCategoryService";
 
-function ListGroup() {
-  const categories = getCategories();
+interface Props {
+  DEFAULT_CATEGORY: Category;
+  items: Category[];
+  selectedCategory: Category;
+  onCategorySelect(item: Category): void;
+}
+
+function ListGroup({
+  DEFAULT_CATEGORY,
+  items,
+  onCategorySelect,
+  selectedCategory,
+}: Props) {
   return (
     <>
       <ul className="list-group">
@@ -11,12 +22,17 @@ function ListGroup() {
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false">
-            Categories
+            {selectedCategory._id === DEFAULT_CATEGORY._id
+              ? DEFAULT_CATEGORY.name
+              : selectedCategory.name}
           </button>
           <ul className="dropdown-menu bg-dark">
-            {categories.map((category) => (
-              <li key={category._id}>
-                <a className="dropdown-item text-secondary" href="#">
+            {items.map((category) => (
+              <li onClick={() => onCategorySelect(category)} key={category._id}>
+                <a
+                  className={`dropdown-item text-secondary ${
+                    selectedCategory._id === category._id ? "active" : ""
+                  }`}>
                   {category.name}
                 </a>
               </li>
