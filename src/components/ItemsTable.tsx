@@ -2,7 +2,7 @@ import ListGroup from "./ListGroup";
 import Pagination from "./Pagination";
 import { useState } from "react";
 import { getItems } from "../services/fakeItemService";
-import { getCategories } from "../services/fakeCategoryService";
+import { Category, getCategories } from "../services/fakeCategoryService";
 import { paginate } from "./utils";
 
 const DEFAULT_CATEGORY = { _id: "", name: "All Categories" };
@@ -12,6 +12,11 @@ function ItemsTable() {
   const items = getItems();
   const [selectedCategory, setSelectedCategory] = useState(DEFAULT_CATEGORY);
   const [selectedPage, setSelectedPage] = useState(1);
+
+  function handleCategorySelect(cataegory: Category) {
+    setSelectedCategory(cataegory);
+    setSelectedPage(1);
+  }
 
   const filtredItems = selectedCategory._id
     ? items.filter((item) => item.category._id === selectedCategory._id)
@@ -25,7 +30,7 @@ function ItemsTable() {
         <ListGroup
           DEFAULT_CATEGORY={DEFAULT_CATEGORY}
           items={[DEFAULT_CATEGORY, ...getCategories()]}
-          onCategorySelect={setSelectedCategory}
+          onCategorySelect={handleCategorySelect}
           selectedCategory={selectedCategory}
         />
         <table className="table table-dark table-bordered border-primary ">
