@@ -1,8 +1,9 @@
+import { NavLink } from "react-router-dom";
 import NavSearch from "./NavSearch";
 
 function Navbar() {
   return (
-    <nav className="navbar bg-primary" data-bs-theme="dark">
+    <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
       <div className="container-fluid">
         <img
           style={{ width: 100 }}
@@ -23,19 +24,21 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page">
+              <NavLink to={""} className="nav-link active" aria-current="page">
                 Home
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link">Employes</a>
+              <NavLink to={"employes"} className="nav-link">
+                Employes
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link">Categories</a>
+              <NavLink to={"categories"} className="nav-link">
+                Categories
+              </NavLink>
             </li>
-            <li className="nav-item">
-              <a className="nav-link">Items</a>
-            </li>
+
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -46,10 +49,14 @@ function Navbar() {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item">Login</a>
+                  <NavLink to={"login"} className="dropdown-item">
+                    Login
+                  </NavLink>
                 </li>
                 <li>
-                  <a className="dropdown-item">Register</a>
+                  <NavLink to={"register"} className="dropdown-item">
+                    Register
+                  </NavLink>
                 </li>
               </ul>
             </li>
