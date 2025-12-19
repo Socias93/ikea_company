@@ -1,3 +1,6 @@
+import { ArrowRight03Icon, ArrowLeft03Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+
 import { range } from "./utils";
 
 interface Props {
@@ -13,6 +16,8 @@ function Pagination({
   onPageSelect,
   selectedPage,
 }: Props) {
+  const next = <HugeiconsIcon icon={ArrowRight03Icon} size={19} />;
+  const previous = <HugeiconsIcon icon={ArrowLeft03Icon} size={19} />;
   let pageCount = Math.ceil(totalCount / pageSize);
   const isFirstPage = selectedPage === 1;
   const isLastPage = selectedPage === pageCount;
@@ -27,8 +32,8 @@ function Pagination({
             <button
               disabled={isFirstPage}
               onClick={() => onPageSelect(selectedPage - 1)}
-              className="page-link clickable page-link bg-transparent text-blue">
-              Previous
+              className="page-link clickable  bg-transparent">
+              {previous}
             </button>
           </li>
         ) : null}
@@ -49,8 +54,8 @@ function Pagination({
             <button
               disabled={isLastPage}
               onClick={() => onPageSelect(selectedPage + 1)}
-              className="page-link clickable page-link bg-transparent text-blue">
-              Next
+              className="page-link clickable page-link bg-transparent ">
+              {next}
             </button>
           </li>
         ) : null}
