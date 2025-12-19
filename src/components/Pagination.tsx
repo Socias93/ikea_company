@@ -14,36 +14,41 @@ function Pagination({
   selectedPage,
 }: Props) {
   let pageCount = Math.ceil(totalCount / pageSize);
+  const isFirstPage = selectedPage === 1;
+  const isLastPage = selectedPage === pageCount;
   let pages = range(1, pageCount);
 
   return (
     <nav aria-label="Page navigation example">
       <ul className="pagination">
-        <li className="page-item">
-          <a
+        <li className={`page-item rounded-3 ${isFirstPage ? "disabled " : ""}`}>
+          <button
+            disabled={isFirstPage}
             onClick={() => onPageSelect(selectedPage - 1)}
-            className="page-link clickable page-link bg-transparent text-blue ">
+            className="page-link clickable page-link bg-transparent text-blue">
             Previous
-          </a>
+          </button>
         </li>
 
         {pages.map((page) => (
           <li key={page} className="page-item">
-            <a
+            <button
               onClick={() => onPageSelect(page)}
               className={`clickable page-link bg-transparent text-blue ${
                 selectedPage === page ? "active" : ""
               }`}>
               {page}
-            </a>
+            </button>
           </li>
         ))}
-        <li className="page-item"></li>
-        <a
-          onClick={() => onPageSelect(selectedPage + 1)}
-          className="page-link clickable page-link bg-transparent text-blue">
-          Next
-        </a>
+        <li className={`page-item rounded-3 ${isLastPage ? "disabled" : ""}`}>
+          <button
+            disabled={isLastPage}
+            onClick={() => onPageSelect(selectedPage + 1)}
+            className="page-link clickable page-link bg-transparent text-blue">
+            Next
+          </button>
+        </li>
       </ul>
     </nav>
   );
