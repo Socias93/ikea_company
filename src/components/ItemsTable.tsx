@@ -17,7 +17,7 @@ function ItemsTable() {
     ? items.filter((item) => item.category._id === selectedCategory._id)
     : items;
 
-  const paginatedItems = paginate(items, PAGE_SIZE, selectedPage);
+  const paginatedItems = paginate(filtredItems, PAGE_SIZE, selectedPage);
 
   return (
     <>

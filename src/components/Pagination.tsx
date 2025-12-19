@@ -23,6 +23,8 @@ function Pagination({
   const isLastPage = selectedPage === pageCount;
   let pages = range(1, pageCount);
 
+  if (pageCount === 1) return null;
+
   return (
     <nav aria-label="Page navigation example">
       <ul className="pagination">
