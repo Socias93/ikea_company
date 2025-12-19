@@ -28,7 +28,13 @@ function Navbar() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link">Link</a>
+              <a className="nav-link">Employes</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link">Categories</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link">Items</a>
             </li>
             <li className="nav-item dropdown">
               <a
@@ -36,25 +42,16 @@ function Navbar() {
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false">
-                Dropdown
+                Login/Register
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item">Action</a>
+                  <a className="dropdown-item">Login</a>
                 </li>
                 <li>
-                  <a className="dropdown-item">Another action</a>
-                </li>
-                <li> className="dropdown-divider"</li>
-                <li>
-                  <a className="dropdown-item">Something else here</a>
+                  <a className="dropdown-item">Register</a>
                 </li>
               </ul>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link disabled" aria-disabled="true">
-                Disabled
-              </a>
             </li>
           </ul>
           <NavSearch />
