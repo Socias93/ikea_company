@@ -10,6 +10,7 @@ const PAGE_SIZE = 10;
 function ItemsTable() {
   const items = getItems();
   const [selectedCategory, setSelectedCategory] = useState(DEFAULT_CATEGORY);
+  const [selectedPage, setSelectedPage] = useState(1);
 
   const filtredItems = selectedCategory._id
     ? items.filter((item) => item.category._id === selectedCategory._id)
@@ -42,7 +43,12 @@ function ItemsTable() {
             ))}
           </tbody>
         </table>
-        <Pagination pageSize={PAGE_SIZE} totalCount={items.length} />
+        <Pagination
+          pageSize={PAGE_SIZE}
+          totalCount={items.length}
+          onPageSelect={setSelectedPage}
+          selectedPage={selectedPage}
+        />
       </div>
     </>
   );
