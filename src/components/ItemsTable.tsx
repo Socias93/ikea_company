@@ -1,8 +1,9 @@
+import ListGroup from "./ListGroup";
+import Pagination from "./Pagination";
 import { useState } from "react";
 import { getItems } from "../services/fakeItemService";
-import ListGroup from "./ListGroup";
 import { getCategories } from "../services/fakeCategoryService";
-import Pagination from "./Pagination";
+import { paginate } from "./utils";
 
 const DEFAULT_CATEGORY = { _id: "", name: "All Categories" };
 const PAGE_SIZE = 10;
@@ -15,6 +16,8 @@ function ItemsTable() {
   const filtredItems = selectedCategory._id
     ? items.filter((item) => item.category._id === selectedCategory._id)
     : items;
+
+  const paginatedItems = paginate(items, PAGE_SIZE, selectedPage);
 
   return (
     <>
@@ -34,7 +37,7 @@ function ItemsTable() {
             </tr>
           </thead>
           <tbody>
-            {filtredItems.map((item) => (
+            {paginatedItems.map((item) => (
               <tr key={item._id}>
                 <td> {item.name} </td>
                 <td> {item.category.name} </td>
@@ -45,7 +48,7 @@ function ItemsTable() {
         </table>
         <Pagination
           pageSize={PAGE_SIZE}
-          totalCount={items.length}
+          totalCount={filtredItems.length}
           onPageSelect={setSelectedPage}
           selectedPage={selectedPage}
         />
