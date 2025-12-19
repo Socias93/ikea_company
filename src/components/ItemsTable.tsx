@@ -2,6 +2,7 @@ import { useState } from "react";
 import { getItems } from "../services/fakeItemService";
 import ListGroup from "./ListGroup";
 import { getCategories } from "../services/fakeCategoryService";
+import Pagination from "./Pagination";
 
 const DEFAULT_CATEGORY = { _id: "", name: "All Categories" };
 
@@ -40,6 +41,7 @@ function ItemsTable() {
             ))}
           </tbody>
         </table>
+        <Pagination />
       </div>
     </>
   );
