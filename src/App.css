@@ -1,3 +1,10 @@
 .clickable {
   cursor: pointer;
 }
+
+html,
+body {
+  background-color: #212529; /* bootstrap bg-dark */
+  min-height: 100%;
+  margin: 0;
+}
