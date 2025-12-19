@@ -5,6 +5,7 @@ import { getCategories } from "../services/fakeCategoryService";
 import Pagination from "./Pagination";
 
 const DEFAULT_CATEGORY = { _id: "", name: "All Categories" };
+const PAGE_SIZE = 10;
 
 function ItemsTable() {
   const items = getItems();
@@ -41,7 +42,7 @@ function ItemsTable() {
             ))}
           </tbody>
         </table>
-        <Pagination />
+        <Pagination pageSize={PAGE_SIZE} totalCount={items.length} />
       </div>
     </>
   );
