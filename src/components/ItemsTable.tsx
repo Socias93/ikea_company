@@ -6,7 +6,7 @@ import { getCategories } from "../services/fakeCategoryService";
 const DEFAULT_CATEGORY = { _id: "", name: "All Categories" };
 
 function ItemsTable() {
-  const [items, setItems] = useState(getItems());
+  const items = getItems();
   const [selectedCategory, setSelectedCategory] = useState(DEFAULT_CATEGORY);
 
   const filtredItems = selectedCategory._id
