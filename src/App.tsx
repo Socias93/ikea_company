@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <Navbar onChange={setSearchValue} value={searchValue} />
-      <Outlet context={{ searchValue }} />
+      <Outlet context={{ searchValue, setSearchValue }} />
     </>
   );
 }

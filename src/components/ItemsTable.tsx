@@ -1,6 +1,6 @@
 import ListGroup from "./ListGroup";
 import Pagination from "./Pagination";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getItems } from "../services/fakeItemService";
 import { Category, getCategories } from "../services/fakeCategoryService";
 import { paginate } from "./utils";
@@ -13,12 +13,19 @@ function ItemsTable() {
   const items = getItems();
   const [selectedCategory, setSelectedCategory] = useState(DEFAULT_CATEGORY);
   const [selectedPage, setSelectedPage] = useState(1);
-  const { searchValue } = useOutletContext<{
+  const { searchValue, setSearchValue } = useOutletContext<{
     searchValue: string;
+    setSearchValue(value: string): void;
   }>();
+
+  useEffect(() => {
+    setSelectedPage(1);
+    setSearchValue(searchValue);
+  }, [searchValue]);
 
   function handleCategorySelect(cataegory: Category) {
     setSelectedCategory(cataegory);
+    setSearchValue("");
     setSelectedPage(1);
   }
 
@@ -66,7 +73,6 @@ function ItemsTable() {
                 <td> {item.name} </td>
                 <td> {item.category.name} </td>
                 <td> {item.price} kr </td>
-
                 <td> {item.numberInStock} st </td>
               </tr>
             ))}
