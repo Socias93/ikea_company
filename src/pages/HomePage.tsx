@@ -1,17 +1,16 @@
-import ListGroup from "./ListGroup";
-import Pagination from "./Pagination";
 import { useEffect, useState } from "react";
 import { getItems } from "../services/fakeItemService";
 import { Category, getCategories } from "../services/fakeCategoryService";
-import { paginate } from "./utils";
 import { useOutletContext } from "react-router-dom";
-import TableHeader from "./TableHeader";
-import TableBody from "./TableBody";
+import { paginate } from "../components/utils";
+import ListGroup from "../components/ListGroup";
+import Pagination from "../components/Pagination";
+import Table from "../components/Table";
 
 const DEFAULT_CATEGORY = { _id: "", name: "All Categories" };
 const PAGE_SIZE = 10;
 
-function ItemsTable() {
+function HomePage() {
   const items = getItems();
   const [selectedCategory, setSelectedCategory] = useState(DEFAULT_CATEGORY);
   const [selectedPage, setSelectedPage] = useState(1);
@@ -65,10 +64,7 @@ function ItemsTable() {
           onCategorySelect={handleCategorySelect}
           selectedCategory={selectedCategory}
         />
-        <table className="table table-dark table-bordered border-primary ">
-          <TableHeader />
-          <TableBody items={paginatedItems} />
-        </table>
+        <Table items={paginatedItems} />
         <Pagination
           pageSize={PAGE_SIZE}
           totalCount={filtredItems.length}
@@ -80,4 +76,4 @@ function ItemsTable() {
   );
 }
 
-export default ItemsTable;
+export default HomePage;
