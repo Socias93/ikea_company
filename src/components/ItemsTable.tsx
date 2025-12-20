@@ -5,6 +5,8 @@ import { getItems } from "../services/fakeItemService";
 import { Category, getCategories } from "../services/fakeCategoryService";
 import { paginate } from "./utils";
 import { useOutletContext } from "react-router-dom";
+import TableHeader from "./TableHeader";
+import TableBody from "./TableBody";
 
 const DEFAULT_CATEGORY = { _id: "", name: "All Categories" };
 const PAGE_SIZE = 10;
@@ -48,6 +50,12 @@ function ItemsTable() {
 
   const paginatedItems = paginate(filtredItems, PAGE_SIZE, selectedPage);
 
+  if (filtredItems.length === 0)
+    return (
+      <h3 className="d-grid justify-content-center text-primary mt-4">
+        There are no items in the database
+      </h3>
+    );
   return (
     <>
       <div className="bg-dark text-primary p-3">
@@ -58,25 +66,8 @@ function ItemsTable() {
           selectedCategory={selectedCategory}
         />
         <table className="table table-dark table-bordered border-primary ">
-          <thead className="">
-            <tr>
-              <th className="text-primary">Name</th>
-              <th className="text-primary">Category</th>
-              <th className="text-primary">Price - (Kr)</th>
-
-              <th className="text-primary">Stock</th>
-            </tr>
-          </thead>
-          <tbody>
-            {paginatedItems.map((item) => (
-              <tr key={item._id}>
-                <td> {item.name} </td>
-                <td> {item.category.name} </td>
-                <td> {item.price} kr </td>
-                <td> {item.numberInStock} st </td>
-              </tr>
-            ))}
-          </tbody>
+          <TableHeader />
+          <TableBody items={paginatedItems} />
         </table>
         <Pagination
           pageSize={PAGE_SIZE}
