@@ -1,20 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { z } from "zod";
-
-const schema = z.object({
-  name: z.string().min(1, { message: "Name is required" }),
-  email: z
-    .email({ error: "You must write a valid email" })
-    .min(1, { message: "Email is required" }),
-  password: z
-    .string()
-    .min(1, { message: "Password is required" })
-    .min(8, { message: "Password cant be less than 8 characters" }),
-});
-
-type registerData = z.infer<typeof schema>;
+import { registerData, schema } from "./schemas/RegisterSchema";
 
 function Register() {
   const navigate = useNavigate();
