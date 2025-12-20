@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import NavSearch from "./NavSearch";
+import { NavSearch } from "./index";
 
 interface Props {
   value: string;

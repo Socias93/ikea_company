@@ -1,6 +1,5 @@
-import { Item } from "../services/fakeItemService";
-import TableBody from "./TableBody";
-import TableHeader from "./TableHeader";
+import { Item } from "../types";
+import { TableBody, TableHeader } from "./index";
 
 interface Props {
   items: Item[];

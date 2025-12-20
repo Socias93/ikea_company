@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { getItems } from "../services/fakeItemService";
-import { Category, getCategories } from "../services/fakeCategoryService";
+import { getCategories } from "../services/fakeCategoryService";
 import { useOutletContext } from "react-router-dom";
 import { paginate } from "../components/utils";
-import ListGroup from "../components/ListGroup";
-import Pagination from "../components/Pagination";
-import Table from "../components/Table";
+import { ListGroup, Table, Pagination } from "../components/index";
+import { Category } from "../types";
 
 const DEFAULT_CATEGORY = { _id: "", name: "All Categories" };
 const PAGE_SIZE = 10;

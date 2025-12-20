@@ -1,4 +1,4 @@
-import { Item } from "../services/fakeItemService";
+import { Item } from "../types";
 
 interface Props {
   items: Item[];
