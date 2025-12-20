@@ -1,7 +1,12 @@
 import { NavLink } from "react-router-dom";
 import NavSearch from "./NavSearch";
 
-function Navbar() {
+interface Props {
+  value: string;
+  onChange(value: string): void;
+}
+
+function Navbar({ onChange, value }: Props) {
   return (
     <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
       <div className="container-fluid">
@@ -61,7 +66,7 @@ function Navbar() {
               </ul>
             </li>
           </ul>
-          <NavSearch />
+          <NavSearch onChange={onChange} value={value} />
         </div>
       </div>
     </nav>

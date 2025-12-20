@@ -4,6 +4,7 @@ import { useState } from "react";
 import { getItems } from "../services/fakeItemService";
 import { Category, getCategories } from "../services/fakeCategoryService";
 import { paginate } from "./utils";
+import { useOutletContext } from "react-router-dom";
 
 const DEFAULT_CATEGORY = { _id: "", name: "All Categories" };
 const PAGE_SIZE = 10;
@@ -12,15 +13,31 @@ function ItemsTable() {
   const items = getItems();
   const [selectedCategory, setSelectedCategory] = useState(DEFAULT_CATEGORY);
   const [selectedPage, setSelectedPage] = useState(1);
+  const { searchValue } = useOutletContext<{
+    searchValue: string;
+  }>();
 
   function handleCategorySelect(cataegory: Category) {
     setSelectedCategory(cataegory);
     setSelectedPage(1);
   }
 
-  const filtredItems = selectedCategory._id
+  let filtredItems = selectedCategory._id
     ? items.filter((item) => item.category._id === selectedCategory._id)
     : items;
+
+  const query = searchValue.toLowerCase();
+  const numberQuery = searchValue.toString();
+
+  if (searchValue) {
+    filtredItems = filtredItems.filter(
+      (item) =>
+        item.name.toLowerCase().includes(query) ||
+        item.category.name.toLowerCase().includes(query) ||
+        item.price.toString().includes(numberQuery) ||
+        item.numberInStock.toString().includes(numberQuery)
+    );
+  }
 
   const paginatedItems = paginate(filtredItems, PAGE_SIZE, selectedPage);
 
