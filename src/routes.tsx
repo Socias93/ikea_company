@@ -1,6 +1,14 @@
 import App from "./App";
 import { createBrowserRouter } from "react-router-dom";
-import { Categories, Employes, HomePage, Login, Register } from "./pages/index";
+import {
+  Categories,
+  CategoryFormPage,
+  Employes,
+  HomePage,
+  ItemFormPage,
+  Login,
+  Register,
+} from "./pages/index";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +34,14 @@ const router = createBrowserRouter([
       {
         path: "categories",
         element: <Categories />,
+      },
+      {
+        path: "new/category",
+        element: <CategoryFormPage />,
+      },
+      {
+        path: "new/item",
+        element: <ItemFormPage />,
       },
     ],
   },

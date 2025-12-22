@@ -12,13 +12,13 @@ function DropdownAddNew() {
       </a>
       <ul className="dropdown-menu">
         <li>
-          <NavLink to={"login"} className="dropdown-item">
+          <NavLink to={"new/category"} className="dropdown-item">
             Category
           </NavLink>
         </li>
         <li>
-          <NavLink to={"register"} className="dropdown-item">
-            Product
+          <NavLink to={"new/item"} className="dropdown-item">
+            Item
           </NavLink>
         </li>
       </ul>
