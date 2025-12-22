@@ -2,8 +2,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ItemFormData, schema } from "./schemas/ItemSchema";
 import { useForm } from "react-hook-form";
 import { getCategories } from "../services/fakeCategoryService";
+import { saveItem } from "../services/fakeItemService";
+import { useNavigate } from "react-router-dom";
 
 function ItemFormPage() {
+  const navigate = useNavigate();
   const categories = getCategories();
   const {
     register,
@@ -13,6 +16,8 @@ function ItemFormPage() {
 
   function onSubmit(data: ItemFormData) {
     console.log("Submitted", data);
+    saveItem(data);
+    navigate("/");
   }
 
   return (
@@ -49,7 +54,7 @@ function ItemFormPage() {
               <div className="mb-3">
                 <label className="form-label text-primary">Stock</label>
                 <input
-                  {...register("numberInStock")}
+                  {...register("numberInStock", { valueAsNumber: true })}
                   className="form-control"
                 />
                 {errors.numberInStock && (
@@ -59,8 +64,11 @@ function ItemFormPage() {
             </div>
 
             <div>
-              <label className="form-label text-primary">Name</label>
-              <input {...register("price")} className="form-control" />
+              <label className="form-label text-primary">Price</label>
+              <input
+                {...register("price", { valueAsNumber: true })}
+                className="form-control"
+              />
               <div style={{ minHeight: "20px" }}>
                 {errors.price && (
                   <p className="text-danger"> {errors.price.message} </p>
