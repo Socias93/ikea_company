@@ -1,7 +1,6 @@
 import App from "./App";
 import { createBrowserRouter } from "react-router-dom";
 import {
-  Categories,
   CategoryFormPage,
   Employes,
   HomePage,
@@ -31,10 +30,7 @@ const router = createBrowserRouter([
         path: "register",
         element: <Register />,
       },
-      {
-        path: "categories",
-        element: <Categories />,
-      },
+
       {
         path: "new/category",
         element: <CategoryFormPage />,
