@@ -38,8 +38,12 @@ function Navbar({ onChange, value }: Props) {
                 Employes
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink to={"categories"} className="nav-link">
+                All Categories
+              </NavLink>
+            </li>
             <DropdownAddNew />
-
             <DropdownLogin />
           </ul>
           <NavSearch onChange={onChange} value={value} />

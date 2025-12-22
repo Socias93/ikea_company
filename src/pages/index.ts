@@ -4,3 +4,4 @@ export { default as Login } from "./Login";
 export { default as Register } from "./Register";
 export { default as ItemFormPage } from "./ItemFormPage";
 export { default as CategoryFormPage } from "./CategoryFormPage";
+export { default as AllCategories } from "./AllCategories";

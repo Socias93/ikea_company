@@ -1,6 +1,7 @@
 import App from "./App";
 import { createBrowserRouter } from "react-router-dom";
 import {
+  AllCategories,
   CategoryFormPage,
   Employes,
   HomePage,
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: "categories",
+        element: <AllCategories />,
       },
 
       {
