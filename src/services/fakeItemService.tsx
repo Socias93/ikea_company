@@ -182,34 +182,6 @@ const items: Item[] = [
   },
 
   // Outdoor
-  {
-    id: "i25",
-    name: "ÄPPLARÖ Outdoor Chair",
-    category: { id: "7", name: "Outdoor" },
-    numberInStock: 8,
-    price: 90,
-  },
-  {
-    id: "i26",
-    name: "ÄPPLARÖ Outdoor Table",
-    category: { id: "7", name: "Outdoor" },
-    numberInStock: 5,
-    price: 150,
-  },
-  {
-    id: "i27",
-    name: "TÄRNÖ Outdoor Chair",
-    category: { id: "7", name: "Outdoor" },
-    numberInStock: 10,
-    price: 70,
-  },
-  {
-    id: "i28",
-    name: "SUNNANÖ Parasol",
-    category: { id: "7", name: "Outdoor" },
-    numberInStock: 6,
-    price: 50,
-  },
 ];
 
 export function getItems() {
