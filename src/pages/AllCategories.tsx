@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { getCategories } from "../services/fakeCategoryService";
 import { getItems } from "../services/fakeItemService";
 import { useState } from "react";
@@ -5,6 +6,7 @@ import { useState } from "react";
 function AllCategories() {
   const [categories, setCategories] = useState(getCategories());
   const items = getItems();
+  const navigate = useNavigate();
 
   function handleDelete(id: string) {
     const newCategory = categories.filter((category) => category.id !== id);
@@ -15,7 +17,7 @@ function AllCategories() {
       <div className="container py-4">
         <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
           {categories.map((category) => {
-            const usedCount = items?.filter(
+            const usedCount = items.filter(
               (it) => it.category.id === category.id
             ).length;
             const disabled = usedCount > 0;
@@ -36,6 +38,9 @@ function AllCategories() {
                       </button>
                       <div>
                         <button
+                          onClick={() =>
+                            navigate(`/update-category/${category.id}`)
+                          }
                           className="btn btn-primary "
                           disabled={disabled}>
                           {disabled ? `In use (${usedCount})` : "Edit"}

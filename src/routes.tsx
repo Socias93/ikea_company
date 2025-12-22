@@ -41,6 +41,10 @@ const router = createBrowserRouter([
         element: <CategoryFormPage />,
       },
       {
+        path: "update-category/:id",
+        element: <CategoryFormPage />,
+      },
+      {
         path: "new/item",
         element: <ItemFormPage />,
       },
