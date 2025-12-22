@@ -6,7 +6,7 @@ import { paginate } from "../components/utils";
 import { ListGroup, Table, Pagination } from "../components/index";
 import { Category } from "../types";
 
-const DEFAULT_CATEGORY = { _id: "", name: "All Categories" };
+const DEFAULT_CATEGORY = { id: "", name: "All Categories" };
 const PAGE_SIZE = 10;
 
 function HomePage() {
@@ -29,8 +29,8 @@ function HomePage() {
     setSelectedPage(1);
   }
 
-  let filtredItems = selectedCategory._id
-    ? items.filter((item) => item.category._id === selectedCategory._id)
+  let filtredItems = selectedCategory.id
+    ? items.filter((item) => item.category.id === selectedCategory.id)
     : items;
 
   const query = searchValue.toLowerCase();

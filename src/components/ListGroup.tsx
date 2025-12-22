@@ -22,16 +22,16 @@ function ListGroup({
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false">
-            {selectedCategory._id === DEFAULT_CATEGORY._id
+            {selectedCategory.id === DEFAULT_CATEGORY.id
               ? DEFAULT_CATEGORY.name
               : selectedCategory.name}
           </button>
           <ul className="dropdown-menu bg-dark">
             {items.map((category) => (
-              <li onClick={() => onCategorySelect(category)} key={category._id}>
+              <li onClick={() => onCategorySelect(category)} key={category.id}>
                 <a
                   className={`dropdown-item text-secondary ${
-                    selectedCategory._id === category._id ? "active" : ""
+                    selectedCategory.id === category.id ? "active" : ""
                   }`}>
                   {category.name}
                 </a>

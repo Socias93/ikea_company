@@ -1,10 +1,10 @@
 export interface Category {
-  _id: string;
+  id: string;
   name: string;
 }
 
 export interface Item {
-  _id: string;
+  id: string;
   name: string;
   category: Category;
   numberInStock: number;
@@ -12,7 +12,7 @@ export interface Item {
 }
 
 export interface ItemFormData {
-  _id?: string;
+  id?: string;
   name: string;
   categoryId: string;
   numberInStock: number;

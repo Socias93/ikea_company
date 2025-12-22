@@ -8,7 +8,7 @@ function TableBody({ items }: Props) {
   return (
     <tbody>
       {items.map((item) => (
-        <tr key={item._id}>
+        <tr key={item.id}>
           <td> {item.name} </td>
           <td> {item.category.name} </td>
           <td> {item.price} kr </td>
