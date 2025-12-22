@@ -1,3 +1,4 @@
+import { CategoryFormData } from "../pages/schemas/CategorySchema";
 import { Category } from "../types";
 
 export const categories: Category[] = [
@@ -18,14 +19,18 @@ export function getCategory(id: string) {
   return categories.find((category) => category.id === id);
 }
 
-export function saveCategory(category: Category) {
-  let categoryInDb =
-    categories.find((c) => c.id === category.id) || ({} as Category);
+export function saveCategory(category: CategoryFormData) {
+  let categoryInDb;
 
-  categoryInDb.name = category.name;
-
-  if (!categoryInDb.id) {
-    categoryInDb.id = Date.now().toString();
+  if (category.id) {
+    categoryInDb = categories.find((c) => c.id === category.id);
+    if (!categoryInDb) throw new Error("Category not found");
+    categoryInDb.name = category.name;
+  } else {
+    categoryInDb = {
+      id: Date.now().toString(),
+      name: category.name,
+    };
     categories.push(categoryInDb);
   }
 

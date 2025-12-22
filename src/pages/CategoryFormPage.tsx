@@ -1,16 +1,21 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CategoryData, schema } from "./schemas/CategorySchema";
+import { CategoryFormData, schema } from "./schemas/CategorySchema";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { saveCategory } from "../services/fakeCategoryService";
 
 function CategoryFormPage() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CategoryData>({ resolver: zodResolver(schema) });
+  } = useForm<CategoryFormData>({ resolver: zodResolver(schema) });
 
-  function onSubmit(data: CategoryData) {
+  function onSubmit(data: CategoryFormData) {
     console.log("Submitted", data);
+    saveCategory(data);
+    navigate("/");
   }
 
   return (

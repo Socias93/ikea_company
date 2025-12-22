@@ -5,4 +5,4 @@ export const schema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
 });
 
-export type CategoryData = z.infer<typeof schema>;
+export type CategoryFormData = z.infer<typeof schema>;
