@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { NavSearch } from "./index";
+import { DropdownAddNew, DropdownLogin, NavSearch } from "./index";
 
 interface Props {
   value: string;
@@ -38,33 +38,9 @@ function Navbar({ onChange, value }: Props) {
                 Employes
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink to={"categories"} className="nav-link">
-                Categories
-              </NavLink>
-            </li>
+            <DropdownAddNew />
 
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Login/Register
-              </a>
-              <ul className="dropdown-menu">
-                <li>
-                  <NavLink to={"login"} className="dropdown-item">
-                    Login
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to={"register"} className="dropdown-item">
-                    Register
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
+            <DropdownLogin />
           </ul>
           <NavSearch onChange={onChange} value={value} />
         </div>
