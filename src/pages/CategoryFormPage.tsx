@@ -2,12 +2,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CategoryFormData, schema } from "./schemas/CategorySchema";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getCategory, saveCategory } from "../services/fakeCategoryService";
-import { Category } from "../types";
 
 function CategoryFormPage() {
-  const [categories, setCategories] = useState<Category | null>(null);
   const { id } = useParams();
   const navigate = useNavigate();
   const {
@@ -26,7 +24,6 @@ function CategoryFormPage() {
         reset({
           name: "",
         });
-        setCategories(null);
         return;
       }
       const category = getCategory(id);
@@ -38,6 +35,7 @@ function CategoryFormPage() {
 
   function mapToCategoryData(data: CategoryFormData) {
     return {
+      id: data.id,
       name: data.name,
     };
   }
