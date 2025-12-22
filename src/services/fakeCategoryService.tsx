@@ -13,3 +13,29 @@ export const categories: Category[] = [
 export function getCategories() {
   return categories;
 }
+
+export function getCategory(id: string) {
+  return categories.find((category) => category.id === id);
+}
+
+export function saveCategory(category: Category) {
+  let categoryInDb =
+    categories.find((c) => c.id === category.id) || ({} as Category);
+
+  categoryInDb.name = category.name;
+
+  if (!categoryInDb.id) {
+    categoryInDb.id = Date.now().toString();
+    categories.push(categoryInDb);
+  }
+
+  return categoryInDb;
+}
+
+export function deleteCategory(id: string) {
+  const categoryInDb = categories.find((c) => c.id === id);
+  if (!categoryInDb) return null;
+
+  categories.splice(categories.indexOf(categoryInDb), 1);
+  return categoryInDb;
+}
