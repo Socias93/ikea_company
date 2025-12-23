@@ -1,4 +1,17 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { employeFormData, schema } from "./schemas/EmployeSchema";
+import { useForm } from "react-hook-form";
+
 function EmployeFormPage() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<employeFormData>({ resolver: zodResolver(schema) });
+
+  function onSubmit(data: employeFormData) {
+    console.log("Submitted", data);
+  }
   return (
     <>
       <div className="vh-100 d-grid justify-content-center align-content-center">
@@ -6,25 +19,33 @@ function EmployeFormPage() {
         <div
           className="p-3 shadow rounded-3"
           style={{ width: "500px", maxWidth: "500px" }}>
-          <form className="text-primary">
+          <form onSubmit={handleSubmit(onSubmit)} className="text-primary">
             <div className="mb-3">
               <label className="form-label">Name</label>
+              <input {...register("name")} className="form-control" />
+            </div>
+            <div className="mb-3">
+              <label {...register("age")} className="form-label">
+                Age
+              </label>
               <input className="form-control" />
             </div>
             <div className="mb-3">
-              <label className="form-label">Age</label>
+              <label {...register("email")} className="form-label">
+                Email
+              </label>
               <input className="form-control" />
             </div>
             <div className="mb-3">
-              <label className="form-label">Email</label>
+              <label {...register("phone")} className="form-label">
+                Phone
+              </label>
               <input className="form-control" />
             </div>
             <div className="mb-3">
-              <label className="form-label">Phone</label>
-              <input className="form-control" />
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Role</label>
+              <label {...register("role")} className="form-label">
+                Role
+              </label>
               <input className="form-control" />
             </div>
             <div className="text-center">
