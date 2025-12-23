@@ -1,3 +1,5 @@
+import { employeFormData } from "../pages/schemas/EmployeSchema";
+
 export interface Employe {
   id: string;
   name: string;
@@ -96,6 +98,31 @@ export function getEmployes() {
 
 export function getEmploye(id: string) {
   return employes.find((e) => e.id === id);
+}
+
+export function saveEmploye(employe: employeFormData) {
+  let employeInDb;
+
+  if (employe.id) {
+    employeInDb = employes.find((e) => e.id === employe.id);
+    if (!employeInDb) throw new Error("Employe not found");
+    employeInDb.name = employe.name;
+    employeInDb.age = employe.age;
+    employeInDb.email = employe.email;
+    employeInDb.number = employe.phone;
+    employeInDb.role = employe.role;
+  } else {
+    employeInDb = {
+      id: Date.now().toString(),
+      name: employe.name,
+      age: employe.age,
+      email: employe.email,
+      number: employe.phone,
+      role: employe.role,
+    };
+    employes.push(employeInDb);
+  }
+  return employeInDb;
 }
 
 export function deleteEmploye(id: string) {
