@@ -54,7 +54,7 @@ function CategoryFormPage() {
           <div className="p-3 shadow-lg rounded-3">
             <div className="m-2">
               <label className="form-label text-primary">Name</label>
-              <input {...register("name")} className="form-control" />{" "}
+              <input {...register("name")} className="form-control" />
               {errors.name && (
                 <p className="text-danger"> {errors.name.message} </p>
               )}
