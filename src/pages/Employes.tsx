@@ -4,6 +4,12 @@ import { NavLink } from "react-router-dom";
 
 function Employes() {
   const [employes, setEmployes] = useState(getEmployes());
+
+  function handleDelete(id: string) {
+    const newEmploye = employes.filter((employe) => employe.id !== id);
+    setEmployes(newEmploye);
+  }
+
   return (
     <div className="container py-4">
       <div className="row g-3 justify-content-center">
@@ -15,12 +21,17 @@ function Employes() {
                 <h6> {t.email} </h6>
                 <span>+46-{t.number} </span>
                 <p className="text-muted fw-bold">{t.role} </p>
-                <div>
+                <div className="d-flex gap-4 justify-content-center">
                   <NavLink
                     to={`/update-employe/${t.id}`}
                     className="btn btn-outline-primary">
                     Edit
                   </NavLink>
+                  <button
+                    onClick={() => handleDelete(t.id)}
+                    className="btn btn-outline-dark">
+                    Delete
+                  </button>
                 </div>
               </div>
             </div>
