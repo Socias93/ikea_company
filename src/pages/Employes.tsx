@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { getEmployes } from "../services/FakeEmployeService";
+import { NavLink } from "react-router-dom";
 
 function Employes() {
   const [employes, setEmployes] = useState(getEmployes());
@@ -14,6 +15,13 @@ function Employes() {
                 <h6> {t.email} </h6>
                 <span>+46-{t.number} </span>
                 <p className="text-muted fw-bold">{t.role} </p>
+                <div>
+                  <NavLink
+                    to={`/update-employe/${t.id}`}
+                    className="btn btn-outline-primary">
+                    Edit
+                  </NavLink>
+                </div>
               </div>
             </div>
           </div>

@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import {
   AllCategories,
   CategoryFormPage,
+  EmployeFormPage,
   Employes,
   HomePage,
   ItemFormPage,
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "update-category/:id",
         element: <CategoryFormPage />,
+      },
+      {
+        path: "update-employe/:id",
+        element: <EmployeFormPage />,
       },
       {
         path: "new/item",

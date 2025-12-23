@@ -62,7 +62,7 @@ const employes: Employe[] = [
     age: 24,
     email: "elin.gustafsson@ikea.com",
     number: 707890123,
-    role: "Customer Service Representative",
+    role: "Customer Service",
   },
   {
     id: "8",
