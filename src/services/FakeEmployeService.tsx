@@ -93,3 +93,7 @@ const employes: Employe[] = [
 export function getEmployes() {
   return employes;
 }
+
+export function getEmploye(id: string) {
+  return employes.find((e) => e.id === id);
+}
