@@ -1,16 +1,24 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { employeFormData, schema } from "./schemas/EmployeSchema";
 import { useForm } from "react-hook-form";
+import { saveEmploye } from "../services/FakeEmployeService";
+import { useNavigate } from "react-router-dom";
 
 function EmployeFormPage() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<employeFormData>({ resolver: zodResolver(schema) });
+  } = useForm<employeFormData>({
+    resolver: zodResolver(schema),
+    mode: "onChange",
+  });
 
   function onSubmit(data: employeFormData) {
     console.log("Submitted", data);
+    saveEmploye(data);
+    navigate("/employes");
   }
   return (
     <>
@@ -29,12 +37,11 @@ function EmployeFormPage() {
               </div>
             </div>
             <div className="mb-3">
-              <label
+              <label className="form-label">Age</label>
+              <input
                 {...register("age", { valueAsNumber: true })}
-                className="form-label">
-                Age
-              </label>
-              <input className="form-control" />
+                className="form-control"
+              />
               <div style={{ minHeight: "20px" }}>
                 {errors.age && (
                   <p className="text-danger">{errors.age.message} </p>
@@ -42,10 +49,8 @@ function EmployeFormPage() {
               </div>
             </div>
             <div className="mb-3">
-              <label {...register("email")} className="form-label">
-                Email
-              </label>
-              <input className="form-control" />
+              <label className="form-label">Email</label>
+              <input {...register("email")} className="form-control" />
               <div style={{ minHeight: "20px" }}>
                 {errors.email && (
                   <p className="text-danger">{errors.email.message} </p>
@@ -53,12 +58,11 @@ function EmployeFormPage() {
               </div>
             </div>
             <div className="mb-3">
-              <label
+              <label className="form-label">Phone</label>
+              <input
                 {...register("phone", { valueAsNumber: true })}
-                className="form-label">
-                Phone
-              </label>
-              <input className="form-control" />
+                className="form-control"
+              />
               <div style={{ minHeight: "20px" }}>
                 {errors.phone && (
                   <p className="text-danger">{errors.phone.message} </p>
@@ -66,10 +70,8 @@ function EmployeFormPage() {
               </div>
             </div>
             <div className="mb-3">
-              <label {...register("role")} className="form-label">
-                Role
-              </label>
-              <input className="form-control" />
+              <label className="form-label">Role</label>
+              <input {...register("role")} className="form-control" />
               <div style={{ minHeight: "20px" }}>
                 {errors.role && (
                   <p className="text-danger">{errors.role.message} </p>
