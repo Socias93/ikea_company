@@ -97,3 +97,11 @@ export function getEmployes() {
 export function getEmploye(id: string) {
   return employes.find((e) => e.id === id);
 }
+
+export function deleteEmploye(id: string) {
+  const employeInDb = employes.find((employe) => employe.id === id);
+  if (!employeInDb) return null;
+
+  employes.splice(employes.indexOf(employeInDb), 1);
+  return employeInDb;
+}
