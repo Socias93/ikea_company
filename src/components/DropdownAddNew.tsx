@@ -21,6 +21,11 @@ function DropdownAddNew() {
             Item
           </NavLink>
         </li>
+        <li>
+          <NavLink to={"new/employe"} className="dropdown-item">
+            Employe
+          </NavLink>
+        </li>
       </ul>
     </li>
   );

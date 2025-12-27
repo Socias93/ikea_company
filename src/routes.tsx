@@ -50,6 +50,10 @@ const router = createBrowserRouter([
         element: <EmployeFormPage />,
       },
       {
+        path: "new/employe",
+        element: <EmployeFormPage />,
+      },
+      {
         path: "new/item",
         element: <ItemFormPage />,
       },
