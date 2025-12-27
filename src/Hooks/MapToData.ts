@@ -1,5 +1,5 @@
-import { CategoryFormData } from "../pages/schemas/CategorySchema";
 import { Employe } from "../services/FakeEmployeService";
+import { Category, Item } from "../types";
 
 export function mapToEmployeData(data: Employe) {
   return {
@@ -12,9 +12,19 @@ export function mapToEmployeData(data: Employe) {
   };
 }
 
-export function mapToCategoryData(data: CategoryFormData) {
+export function mapToCategoryData(data: Category) {
   return {
     id: data.id,
     name: data.name,
+  };
+}
+
+export function mapToItemData(data: Item) {
+  return {
+    id: data.id,
+    name: data.name,
+    categoryId: data.category.id,
+    numberInStock: data.numberInStock,
+    price: data.price,
   };
 }

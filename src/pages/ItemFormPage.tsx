@@ -5,7 +5,7 @@ import { getCategories } from "../services/fakeCategoryService";
 import { getItem, saveItem } from "../services/fakeItemService";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Item } from "../types";
+import { mapToItemData } from "../Hooks/MapToData";
 
 function ItemFormPage() {
   const [categories, setCategories] = useState(getCategories());
@@ -36,16 +36,6 @@ function ItemFormPage() {
     console.log("Submitted", data);
     saveItem(data);
     navigate("/");
-  }
-
-  function mapToItemData(data: Item) {
-    return {
-      id: data.id,
-      name: data.name,
-      categoryId: data.category.id,
-      numberInStock: data.numberInStock,
-      price: data.price,
-    };
   }
 
   return (
