@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getCategory, saveCategory } from "../services/fakeCategoryService";
+import { mapToCategoryData } from "../Hooks/MapToData";
 
 function CategoryFormPage() {
   const { id } = useParams();
@@ -32,13 +33,6 @@ function CategoryFormPage() {
     }
     fetch();
   }, [reset, id]);
-
-  function mapToCategoryData(data: CategoryFormData) {
-    return {
-      id: data.id,
-      name: data.name,
-    };
-  }
 
   function onSubmit(data: CategoryFormData) {
     console.log("Submitted", data);
