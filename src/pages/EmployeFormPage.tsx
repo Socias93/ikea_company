@@ -24,7 +24,16 @@ function EmployeFormPage() {
 
   useEffect(() => {
     function fetch() {
-      if (!id || id === "new/employe") return;
+      if (!id || id === "new/employe") {
+        reset({
+          age: "",
+          email: "",
+          name: "",
+          phone: "",
+          role: "",
+        } as any);
+        return;
+      }
       const employe = getEmploye(id);
 
       if (!employe) return;
