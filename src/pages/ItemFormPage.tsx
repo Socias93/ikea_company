@@ -2,22 +2,50 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ItemFormData, schema } from "./schemas/ItemSchema";
 import { useForm } from "react-hook-form";
 import { getCategories } from "../services/fakeCategoryService";
-import { saveItem } from "../services/fakeItemService";
-import { useNavigate } from "react-router-dom";
+import { getItem, saveItem } from "../services/fakeItemService";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Item } from "../types";
 
 function ItemFormPage() {
+  const [categories, setCategories] = useState(getCategories());
+  const { id } = useParams();
   const navigate = useNavigate();
-  const categories = getCategories();
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ItemFormData>({ resolver: zodResolver(schema) });
 
+  useEffect(() => {
+    function fetch() {
+      const category = getCategories();
+      if (!category) return;
+      setCategories(categories);
+
+      if (!id || id === "new/item") return;
+      const item = getItem(id);
+      if (!item) return;
+      reset(mapToItemData(item));
+    }
+    fetch();
+  }, [reset, id]);
+
   function onSubmit(data: ItemFormData) {
     console.log("Submitted", data);
     saveItem(data);
     navigate("/");
+  }
+
+  function mapToItemData(data: Item) {
+    return {
+      id: data.id,
+      name: data.name,
+      categoryId: data.category.id,
+      numberInStock: data.numberInStock,
+      price: data.price,
+    };
   }
 
   return (
