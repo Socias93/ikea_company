@@ -2,13 +2,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { employeFormData, schema } from "./schemas/EmployeSchema";
 import { useForm } from "react-hook-form";
 import { getEmploye, saveEmploye } from "../services/FakeEmployeService";
-import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { mapToEmployeData } from "../Hooks/MapToData";
 
 function EmployeFormPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+
   const {
     reset,
     register,
@@ -44,6 +45,7 @@ function EmployeFormPage() {
     saveEmploye(data);
     navigate("/employes");
   }
+
   return (
     <>
       <div className="vh-100 d-grid justify-content-center align-content-center">

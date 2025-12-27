@@ -1,19 +1,34 @@
 import { useState } from "react";
 import { getEmployes } from "../services/FakeEmployeService";
-import { NavLink } from "react-router-dom";
+import { NavLink, useOutletContext } from "react-router-dom";
 
 function Employes() {
   const [employes, setEmployes] = useState(getEmployes());
+  const { searchValue } = useOutletContext<{
+    searchValue: string;
+  }>();
 
   function handleDelete(id: string) {
     const newEmploye = employes.filter((employe) => employe.id !== id);
     setEmployes(newEmploye);
   }
 
+  const query = searchValue.toLowerCase();
+  const numberQuery = searchValue.toString();
+
+  let filtredItems = employes.filter(
+    (employe) =>
+      employe.name.toLowerCase().includes(query) ||
+      employe.age.toString().includes(numberQuery) ||
+      employe.email.toLowerCase().includes(query) ||
+      employe.number.toString().includes(numberQuery) ||
+      employe.role.toLowerCase().includes(query)
+  );
+
   return (
     <div className="container py-4">
       <div className="row g-3 justify-content-center">
-        {employes.map((t) => (
+        {filtredItems.map((t) => (
           <div key={t.id} className="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
             <div className="card shadow-lg border-0 rounded-4 w-100 d-flex flex-column">
               <div className="card-body d-flex flex-column">
