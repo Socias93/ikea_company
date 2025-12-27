@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { Item } from "../types";
 
 interface Props {
@@ -11,7 +12,11 @@ function TableBody({ items }: Props) {
         <tr key={item.id}>
           <td className="d-flex justify-content-between">
             {item.name}
-            <button className="btn btn-outline-primary">Edit</button>
+            <NavLink
+              to={`update-item/${item.id}`}
+              className="btn btn-outline-primary">
+              Edit
+            </NavLink>
           </td>
           <td> {item.category.name} </td>
           <td> {item.price} kr </td>

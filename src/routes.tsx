@@ -57,6 +57,10 @@ const router = createBrowserRouter([
         path: "new/item",
         element: <ItemFormPage />,
       },
+      {
+        path: "update-item/:id",
+        element: <ItemFormPage />,
+      },
     ],
   },
 ]);
