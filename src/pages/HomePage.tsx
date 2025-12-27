@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getItems } from "../services/fakeItemService";
 import { getCategories } from "../services/fakeCategoryService";
 import { useOutletContext } from "react-router-dom";
@@ -17,11 +17,6 @@ function HomePage() {
     searchValue: string;
     setSearchValue(value: string): void;
   }>();
-
-  useEffect(() => {
-    setSelectedPage(1);
-    setSearchValue(searchValue);
-  }, [searchValue]);
 
   function handleCategorySelect(cataegory: Category) {
     setSelectedCategory(cataegory);
