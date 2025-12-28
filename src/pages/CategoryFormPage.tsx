@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getCategory, saveCategory } from "../services/fakeCategoryService";
-import { mapToCategoryData } from "../Hooks/MapToData";
+import { mapToCategoryData } from "../components/utils";
 
 function CategoryFormPage() {
   const { id } = useParams();

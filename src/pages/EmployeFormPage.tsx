@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { getEmploye, saveEmploye } from "../services/FakeEmployeService";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { mapToEmployeData } from "../Hooks/MapToData";
+import { mapToEmployeData } from "../components/utils";
 
 function EmployeFormPage() {
   const { id } = useParams();

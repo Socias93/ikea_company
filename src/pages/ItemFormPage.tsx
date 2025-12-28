@@ -5,7 +5,7 @@ import { getCategories } from "../services/fakeCategoryService";
 import { getItem, saveItem } from "../services/fakeItemService";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { mapToItemData } from "../Hooks/MapToData";
+import { mapToItemData } from "../components/utils";
 
 function ItemFormPage() {
   const [categories, setCategories] = useState(getCategories());
