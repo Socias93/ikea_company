@@ -19,7 +19,7 @@ function Login() {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="vh-100 d-grid justify-content-center align-content-center">
-          <h3 className="text-primary mb-3 text-center">Register page</h3>
+          <h3 className="text-primary mb-3 text-center">Login page</h3>
           <div className="p-3 shadow rounded-3">
             <div className="mb-3 text-primary">
               <label className="form-label">Name</label>
