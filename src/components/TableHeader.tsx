@@ -1,11 +1,18 @@
-function TableHeader() {
+import { Column } from "../types";
+
+interface Props {
+  columns: Column[];
+}
+
+function TableHeader({ columns }: Props) {
   return (
     <thead className="">
       <tr>
-        <th className="text-primary">Name</th>
-        <th className="text-primary">Category</th>
-        <th className="text-primary">Price - (Kr)</th>
-        <th className="text-primary">Stock</th>
+        {columns.map((column) => (
+          <th key={column.path} className="text-primary">
+            {column.label}
+          </th>
+        ))}
       </tr>
     </thead>
   );

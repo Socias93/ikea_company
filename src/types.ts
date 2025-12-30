@@ -1,5 +1,3 @@
-
-
 export interface Category {
   id: string;
   name: string;
@@ -19,4 +17,9 @@ export interface ItemFormData {
   categoryId: string;
   numberInStock: number;
   price: number;
+}
+
+export interface Column {
+  path: string;
+  label: string;
 }
