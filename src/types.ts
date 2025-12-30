@@ -1,3 +1,5 @@
+import { JSX } from "react";
+
 export interface Category {
   id: string;
   name: string;
@@ -19,7 +21,14 @@ export interface ItemFormData {
   price: number;
 }
 
-export interface Column {
+export interface Textcolumn {
   path: string;
   label: string;
 }
+
+export interface ContentColumn {
+  key: string;
+  content: (item: Item) => JSX.Element;
+}
+
+export type Column = Textcolumn | ContentColumn;
