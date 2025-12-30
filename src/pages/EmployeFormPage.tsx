@@ -1,10 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { employeFormData, schema } from "./schemas/EmployeSchema";
 import { useForm } from "react-hook-form";
-import { getEmploye, saveEmploye } from "../services/FakeEmployeService";
+import { saveEmploye } from "../services/FakeEmployeService";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
-import { mapToEmployeData } from "../components/utils";
+import { useEmployeForm } from "../hooks/useEmployeForm";
 
 function EmployeFormPage() {
   const { id } = useParams();
@@ -20,25 +19,7 @@ function EmployeFormPage() {
     mode: "onChange",
   });
 
-  useEffect(() => {
-    function fetch() {
-      if (!id || id === "new/employe") {
-        reset({
-          age: "",
-          email: "",
-          name: "",
-          phone: "",
-          role: "",
-        } as any);
-        return;
-      }
-      const employe = getEmploye(id);
-
-      if (!employe) return;
-      reset(mapToEmployeData(employe));
-    }
-    fetch();
-  }, [reset, id]);
+  useEmployeForm(id, reset);
 
   function onSubmit(data: employeFormData) {
     console.log("Submitted", data);
