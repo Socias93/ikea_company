@@ -1,14 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ItemFormData, schema } from "./schemas/ItemSchema";
 import { useForm } from "react-hook-form";
-import { getCategories } from "../services/fakeCategoryService";
-import { getItem, saveItem } from "../services/fakeItemService";
+import { saveItem } from "../services/fakeItemService";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { mapToItemData } from "../components/utils";
+import { useItemForm } from "../hooks/useItemForm";
 
 function ItemFormPage() {
-  const [categories, setCategories] = useState(getCategories());
   const { id } = useParams();
   const navigate = useNavigate();
   const {
@@ -18,27 +15,7 @@ function ItemFormPage() {
     formState: { errors },
   } = useForm<ItemFormData>({ resolver: zodResolver(schema) });
 
-  useEffect(() => {
-    function fetch() {
-      const category = getCategories();
-      if (!category) return;
-      setCategories(categories);
-
-      if (!id || id === "new/item") {
-        reset({
-          name: "",
-          categoryId: "",
-          numberInStock: null,
-          price: null,
-        } as any);
-        return;
-      }
-      const item = getItem(id);
-      if (!item) return;
-      reset(mapToItemData(item));
-    }
-    fetch();
-  }, [reset, id]);
+  const { categories } = useItemForm(id, reset);
 
   function onSubmit(data: ItemFormData) {
     console.log("Submitted", data);

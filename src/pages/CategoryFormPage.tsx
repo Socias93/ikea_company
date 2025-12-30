@@ -2,9 +2,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CategoryFormData, schema } from "./schemas/CategorySchema";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
-import { getCategory, saveCategory } from "../services/fakeCategoryService";
-import { mapToCategoryData } from "../components/utils";
+import { saveCategory } from "../services/fakeCategoryService";
+import { useCategoryForm } from "../hooks/useCategoryForm";
 
 function CategoryFormPage() {
   const { id } = useParams();
@@ -19,20 +18,7 @@ function CategoryFormPage() {
     resolver: zodResolver(schema),
   });
 
-  useEffect(() => {
-    function fetch() {
-      if (!id || id === "new/category") {
-        reset({
-          name: "",
-        });
-        return;
-      }
-      const category = getCategory(id);
-      if (!category) return;
-      reset(mapToCategoryData(category));
-    }
-    fetch();
-  }, [reset, id]);
+  useCategoryForm(id, reset);
 
   function onSubmit(data: CategoryFormData) {
     console.log("Submitted", data);
