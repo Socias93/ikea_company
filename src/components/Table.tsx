@@ -17,7 +17,7 @@ function Table({ items }: Props) {
     },
     {
       path: "price",
-      label: "Price (Kr)",
+      label: "Price - (Kr)",
     },
     {
       path: "numberInStock",
