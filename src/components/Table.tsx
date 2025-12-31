@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { Column, Item } from "../types";
 import { TableBody, TableHeader } from "./index";
 
@@ -22,6 +23,16 @@ function Table({ items }: Props) {
     {
       path: "numberInStock",
       label: "Stock",
+    },
+    {
+      key: "Edit",
+      content: (item: Item) => (
+        <NavLink
+          to={`update-item/${item.id}`}
+          className="btn btn-outline-primary">
+          Edit
+        </NavLink>
+      ),
     },
   ];
   return (
