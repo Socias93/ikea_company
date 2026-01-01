@@ -11,6 +11,16 @@ function Table({ items }: Props) {
     {
       path: "name",
       label: "Name",
+      content: (item) => (
+        <div className="d-flex justify-content-between align-items-center">
+          <span>{item.name}</span>
+          <NavLink
+            to={`update-item/${item.id}`}
+            className="btn btn-sm btn-outline-primary ms-2">
+            Edit
+          </NavLink>
+        </div>
+      ),
     },
     {
       path: "category.name",
@@ -24,22 +34,12 @@ function Table({ items }: Props) {
       path: "numberInStock",
       label: "Stock",
     },
-    {
-      key: "Edit",
-      content: (item: Item) => (
-        <NavLink
-          to={`update-item/${item.id}`}
-          className="btn btn-outline-primary">
-          Edit
-        </NavLink>
-      ),
-    },
   ];
   return (
     <>
       <table className="table table-dark table-bordered border-primary ">
         <TableHeader columns={columns} />
-        <TableBody items={items} />
+        <TableBody items={items} columns={columns} />
       </table>
     </>
   );
