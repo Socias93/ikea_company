@@ -25,27 +25,15 @@ export function getCategory(id: string) {
 }
 
 export function saveCategory(category: CategoryFormData) {
-  let categoryInDb;
-
   if (category.id) {
-    categoryInDb = categories.find((c) => c.id === category.id);
-    if (!categoryInDb) throw new Error("Category not found");
-    categoryInDb.name = category.name;
+    return axios.put<Category>(
+      `${BASE_URL + CATEGORY_URL}/${(category.id, category)}`
+    );
   } else {
-    categoryInDb = {
-      id: Date.now().toString(),
-      name: category.name,
-    };
-    categories.push(categoryInDb);
+    return axios.post<Category>(BASE_URL + CATEGORY_URL, category);
   }
-
-  return categoryInDb;
 }
 
 export function deleteCategory(id: string) {
-  const categoryInDb = categories.find((c) => c.id === id);
-  if (!categoryInDb) return null;
-
-  categories.splice(categories.indexOf(categoryInDb), 1);
-  return categoryInDb;
+  return axios.delete(`${BASE_URL + CATEGORY_URL}/${id}`);
 }

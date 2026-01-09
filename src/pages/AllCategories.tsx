@@ -2,7 +2,7 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 import { getItems } from "../services/fakeItemService";
 import { useEffect, useState } from "react";
 import { Category } from "../types";
-import { getCategories } from "../services/fakeCategoryService";
+import { deleteCategory, getCategories } from "../services/fakeCategoryService";
 
 function AllCategories() {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -31,9 +31,10 @@ function AllCategories() {
     category.name.toLowerCase().includes(query)
   );
 
-  function handleDelete(id: string) {
+  async function handleDelete(id: string) {
     const newCategory = categories.filter((category) => category.id !== id);
     setCategories(newCategory);
+    await deleteCategory(id);
   }
   return (
     <>
