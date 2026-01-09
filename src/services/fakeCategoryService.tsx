@@ -1,5 +1,6 @@
 import { CategoryFormData } from "../pages/schemas/CategorySchema";
 import { Category } from "../types";
+import axios from "axios";
 
 export const categories: Category[] = [
   { id: "1", name: "Furniture" },
