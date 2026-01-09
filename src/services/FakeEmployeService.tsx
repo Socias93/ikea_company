@@ -16,10 +16,16 @@ export function getEmployes() {
 }
 
 export function getEmploye(id: string) {
-  return axios.get(`${EMPLOYE_URL}/${id}`);
+  return axios.get<Employe>(`${EMPLOYE_URL}/${id}`);
 }
 
-export function saveEmploye(employe: employeFormData) {}
+export function saveEmploye(employe: employeFormData) {
+  if (employe.id) {
+    return axios.put<Employe>(`${EMPLOYE_URL}/${employe.id}`, employe);
+  } else {
+    return axios.post<Employe>(EMPLOYE_URL, employe);
+  }
+}
 
 export function deleteEmploye(id: string) {
   const employeInDb = employes.find((employe) => employe.id === id);

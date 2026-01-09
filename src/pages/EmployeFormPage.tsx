@@ -21,9 +21,9 @@ function EmployeFormPage() {
 
   useEmployeForm(id, reset);
 
-  function onSubmit(data: employeFormData) {
+  async function onSubmit(data: employeFormData) {
     console.log("Submitted", data);
-    saveEmploye(data);
+    await saveEmploye(data);
     navigate("/employes");
   }
 
