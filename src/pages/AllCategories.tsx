@@ -1,17 +1,31 @@
 import { useNavigate, useOutletContext } from "react-router-dom";
-import { getCategories } from "../services/fakeCategoryService";
 import { getItems } from "../services/fakeItemService";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Category } from "../types";
+import { getCategories } from "../services/fakeCategoryService";
 
 function AllCategories() {
-  const [categories, setCategories] = useState(getCategories());
+  const [categories, setCategories] = useState<Category[]>([]);
   const items = getItems();
   const navigate = useNavigate();
   const { searchValue } = useOutletContext<{
     searchValue: string;
   }>();
 
-  const query = searchValue.toLowerCase();
+  useEffect(() => {
+    async function fetch() {
+      try {
+        const { data: categories } = await getCategories();
+        setCategories(categories);
+      } catch (err) {
+        console.log("Failed to fetch categories", err);
+      }
+    }
+
+    fetch();
+  }, []);
+
+  const query = (searchValue || "").toLowerCase();
 
   let filtredCategories = categories.filter((category) =>
     category.name.toLowerCase().includes(query)

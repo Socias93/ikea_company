@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getItems } from "../services/fakeItemService";
 import { getCategories } from "../services/fakeCategoryService";
 import { useOutletContext } from "react-router-dom";
@@ -11,12 +11,22 @@ const PAGE_SIZE = 10;
 
 function HomePage() {
   const items = getItems();
+  const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState(DEFAULT_CATEGORY);
   const [selectedPage, setSelectedPage] = useState(1);
   const { searchValue, setSearchValue } = useOutletContext<{
     searchValue: string;
     setSearchValue(value: string): void;
   }>();
+
+  useEffect(() => {
+    async function fetch() {
+      const { data: categories } = await getCategories();
+      setCategories(categories);
+    }
+
+    fetch();
+  }, []);
 
   function handleCategorySelect(cataegory: Category) {
     setSelectedCategory(cataegory);
@@ -54,7 +64,7 @@ function HomePage() {
       <div className="bg-dark text-primary p-3">
         <ListGroup
           DEFAULT_CATEGORY={DEFAULT_CATEGORY}
-          items={[DEFAULT_CATEGORY, ...getCategories()]}
+          items={[DEFAULT_CATEGORY, ...categories]}
           onCategorySelect={handleCategorySelect}
           selectedCategory={selectedCategory}
         />

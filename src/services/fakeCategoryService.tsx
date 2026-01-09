@@ -2,6 +2,8 @@ import { CategoryFormData } from "../pages/schemas/CategorySchema";
 import { Category } from "../types";
 import axios from "axios";
 
+const API_URL = "http://localhost:5555/api/categories";
+
 export const categories: Category[] = [
   { id: "1", name: "Furniture" },
   { id: "2", name: "Lighting" },
@@ -13,7 +15,7 @@ export const categories: Category[] = [
 ];
 
 export function getCategories() {
-  return categories;
+  return axios.get<Category[]>(API_URL);
 }
 
 export function getCategory(id: string) {
