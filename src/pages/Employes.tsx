@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
-import {
-  deleteEmploye,
-  Employe,
-  getEmployes,
-} from "../services/FakeEmployeService";
+import { deleteEmploye, getEmployes } from "../services/FakeEmployeService";
 import { NavLink, useOutletContext } from "react-router-dom";
+import { Employe } from "../types";
 
 function Employes() {
   const [employes, setEmployes] = useState<Employe[]>([]);

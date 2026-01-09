@@ -1,5 +1,4 @@
-import { Employe } from "../services/FakeEmployeService";
-import { Category, Item } from "../types";
+import { Category, Item, Employe } from "../types";
 
 export function range(startNumber: number, endNumber: number): number[] {
   let pages: number[] = [];

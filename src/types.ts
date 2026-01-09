@@ -5,6 +5,14 @@ export interface Category {
   name: string;
 }
 
+export interface Employe {
+  id: string;
+  name: string;
+  email: string;
+  phone: number;
+  role: string;
+}
+
 export interface Item {
   id: string;
   name: string;
