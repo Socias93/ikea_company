@@ -43,18 +43,7 @@ function EmployeFormPage() {
                 )}
               </div>
             </div>
-            <div className="mb-3">
-              <label className="form-label">Age</label>
-              <input
-                {...register("age", { valueAsNumber: true })}
-                className="form-control"
-              />
-              <div style={{ minHeight: "20px" }}>
-                {errors.age && (
-                  <p className="text-danger">{errors.age.message} </p>
-                )}
-              </div>
-            </div>
+
             <div className="mb-3">
               <label className="form-label">Email</label>
               <input {...register("email")} className="form-control" />

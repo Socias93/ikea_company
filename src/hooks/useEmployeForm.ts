@@ -4,7 +4,7 @@ import { getEmploye } from "../services/FakeEmployeService";
 
 export function useEmployeForm(id: string | undefined, reset: any) {
   useEffect(() => {
-    function fetch() {
+    async function fetch() {
       if (!id || id === "new/employe") {
         reset({
           age: "",
@@ -15,7 +15,7 @@ export function useEmployeForm(id: string | undefined, reset: any) {
         } as any);
         return;
       }
-      const employe = getEmploye(id);
+      const { data: employe } = await getEmploye(id);
 
       if (!employe) return;
       reset(mapToEmployeData(employe));

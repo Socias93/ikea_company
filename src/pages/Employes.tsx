@@ -33,7 +33,6 @@ function Employes() {
   let filtredItems = employes.filter(
     (employe) =>
       employe.name.toLowerCase().includes(query) ||
-      employe.age.toString().includes(numberQuery) ||
       employe.email.toLowerCase().includes(query) ||
       employe.number.toString().includes(numberQuery) ||
       employe.role.toLowerCase().includes(query)

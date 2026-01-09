@@ -3,9 +3,7 @@ import z from "zod";
 export const schema = z.object({
   id: z.string().optional(),
   name: z.string().min(1, { message: "Name is required" }),
-  age: z
-    .number({ error: "You must write with numbers" })
-    .min(18, { message: "Age cant be less than 18" }),
+
   email: z
     .email({ error: "Wrong email format" })
     .min(1, { message: "Email is required" }),
