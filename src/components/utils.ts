@@ -26,7 +26,7 @@ export function mapToEmployeData(data: Employe) {
     id: data.id,
     name: data.name,
     email: data.email,
-    phone: data.number,
+    phone: data.phone,
     role: data.role,
   };
 }

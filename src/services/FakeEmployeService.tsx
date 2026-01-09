@@ -7,7 +7,7 @@ export interface Employe {
   id: string;
   name: string;
   email: string;
-  number: number;
+  phone: number;
   role: string;
 }
 
@@ -28,9 +28,5 @@ export function saveEmploye(employe: employeFormData) {
 }
 
 export function deleteEmploye(id: string) {
-  const employeInDb = employes.find((employe) => employe.id === id);
-  if (!employeInDb) return null;
-
-  employes.splice(employes.indexOf(employeInDb), 1);
-  return employeInDb;
+  return axios.delete(`${EMPLOYE_URL}/${id}`);
 }

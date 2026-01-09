@@ -34,7 +34,7 @@ function Employes() {
     (employe) =>
       employe.name.toLowerCase().includes(query) ||
       employe.email.toLowerCase().includes(query) ||
-      employe.number.toString().includes(numberQuery) ||
+      employe.phone.toString().includes(numberQuery) ||
       employe.role.toLowerCase().includes(query)
   );
 
@@ -47,7 +47,7 @@ function Employes() {
               <div className="card-body d-flex flex-column">
                 <h5 className="card-title text-center mb-3">{t.name}</h5>
                 <h6> {t.email} </h6>
-                <span>+46-{t.number} </span>
+                <span>+46-{t.phone} </span>
                 <p className="text-muted fw-bold">{t.role} </p>
                 <div className="d-flex gap-4 justify-content-center">
                   <NavLink
