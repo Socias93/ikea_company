@@ -1,4 +1,7 @@
+import axios from "axios";
 import { employeFormData } from "../pages/schemas/EmployeSchema";
+
+const EMPLOYE_URL = "http://localhost:5555/api/employes";
 
 export interface Employe {
   id: string;
@@ -93,7 +96,7 @@ const employes: Employe[] = [
 ];
 
 export function getEmployes() {
-  return employes;
+  return axios.get<Employe[]>(EMPLOYE_URL);
 }
 
 export function getEmploye(id: string) {

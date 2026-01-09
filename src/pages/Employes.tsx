@@ -1,16 +1,30 @@
-import { useState } from "react";
-import { getEmployes } from "../services/FakeEmployeService";
+import { useEffect, useState } from "react";
+import {
+  deleteEmploye,
+  Employe,
+  getEmployes,
+} from "../services/FakeEmployeService";
 import { NavLink, useOutletContext } from "react-router-dom";
 
 function Employes() {
-  const [employes, setEmployes] = useState(getEmployes());
+  const [employes, setEmployes] = useState<Employe[]>([]);
   const { searchValue } = useOutletContext<{
     searchValue: string;
   }>();
 
-  function handleDelete(id: string) {
+  useEffect(() => {
+    async function fetch() {
+      const { data: employes } = await getEmployes();
+      setEmployes(employes);
+    }
+
+    fetch();
+  }, []);
+
+  async function handleDelete(id: string) {
     const newEmploye = employes.filter((employe) => employe.id !== id);
     setEmployes(newEmploye);
+    await deleteEmploye(id);
   }
 
   const query = searchValue.toLowerCase();
