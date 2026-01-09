@@ -4,14 +4,14 @@ import { mapToCategoryData } from "../components/utils";
 
 export function useCategoryForm(id: string | undefined, reset: any) {
   useEffect(() => {
-    function fetch() {
+    async function fetch() {
       if (!id || id === "new/category") {
         reset({
           name: "",
         });
         return;
       }
-      const category = getCategory(id);
+      const { data: category } = await getCategory(id);
       if (!category) return;
       reset(mapToCategoryData(category));
     }

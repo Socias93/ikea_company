@@ -2,7 +2,9 @@ import { CategoryFormData } from "../pages/schemas/CategorySchema";
 import { Category } from "../types";
 import axios from "axios";
 
-const API_URL = "http://localhost:5555/api/categories";
+const BASE_URL = "http://localhost:5555/";
+
+const CATEGORY_URL = "api/categories";
 
 export const categories: Category[] = [
   { id: "1", name: "Furniture" },
@@ -15,11 +17,11 @@ export const categories: Category[] = [
 ];
 
 export function getCategories() {
-  return axios.get<Category[]>(API_URL);
+  return axios.get<Category[]>(BASE_URL + CATEGORY_URL);
 }
 
 export function getCategory(id: string) {
-  return categories.find((category) => category.id === id);
+  return axios.get<Category>(`${BASE_URL + CATEGORY_URL}/${id}`);
 }
 
 export function saveCategory(category: CategoryFormData) {
