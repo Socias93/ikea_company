@@ -1,11 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ItemFormData, schema } from "./schemas/ItemSchema";
 import { useForm } from "react-hook-form";
-import { saveItem } from "../services/fakeItemService";
+import { deleteItem, saveItem } from "../services/fakeItemService";
 import { useNavigate, useParams } from "react-router-dom";
 import { useItemForm } from "../hooks/useItemForm";
+import { useState } from "react";
+import { Item } from "../types";
 
 function ItemFormPage() {
+  const [items, setItems] = useState<Item[]>([]);
   const { id } = useParams();
   const navigate = useNavigate();
   const {
@@ -16,6 +19,13 @@ function ItemFormPage() {
   } = useForm<ItemFormData>({ resolver: zodResolver(schema) });
 
   const { categories } = useItemForm(id, reset);
+
+  async function handleDelete(id: string) {
+    const newItem = items.filter((item) => item.id !== id);
+    setItems(newItem);
+    await deleteItem(id);
+    navigate("/");
+  }
 
   async function onSubmit(data: ItemFormData) {
     console.log("Submitted", data);
@@ -81,7 +91,14 @@ function ItemFormPage() {
 
             <div className="text-center d-flex justify-content-center gap-3">
               <button className="btn btn-outline-primary">Save</button>
-              {id && <button className="btn btn-outline-danger">delete</button>}
+              {id && (
+                <button
+                  type="button"
+                  onClick={() => handleDelete(id)}
+                  className="btn btn-outline-danger">
+                  delete
+                </button>
+              )}
             </div>
           </div>
         </div>
