@@ -9,9 +9,9 @@ export function useItemForm(id: string | undefined, reset: any) {
 
   useEffect(() => {
     async function fetch() {
-      const category = getCategories();
+      const { data: category } = await getCategories();
       if (!category) return;
-      setCategories(categories);
+      setCategories(category);
 
       if (!id || id === "new/item") {
         reset({
@@ -22,7 +22,7 @@ export function useItemForm(id: string | undefined, reset: any) {
         } as any);
         return;
       }
-      const item = getItem(id);
+      const { data: item } = await getItem(id);
       if (!item) return;
       reset(mapToItemData(item));
     }

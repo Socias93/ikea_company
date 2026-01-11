@@ -10,7 +10,7 @@ const DEFAULT_CATEGORY = { id: "", name: "All Categories" };
 const PAGE_SIZE = 10;
 
 function HomePage() {
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItem] = useState<Item[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState(DEFAULT_CATEGORY);
   const [selectedPage, setSelectedPage] = useState(1);
@@ -26,7 +26,8 @@ function HomePage() {
         setCategories(categories);
 
         const { data: items } = await getItems();
-        setItems(items);
+        setItem(items);
+        console.log(items);
       } catch (err) {
         console.log("Failed to fetch categories", err);
       }
@@ -42,7 +43,7 @@ function HomePage() {
   }
 
   let filtredItems = selectedCategory.id
-    ? items.filter((item) => item.category.id === selectedCategory.id)
+    ? items.filter((item) => item.category?.id === selectedCategory.id)
     : items;
 
   const query = searchValue.toLowerCase();

@@ -17,9 +17,9 @@ function ItemFormPage() {
 
   const { categories } = useItemForm(id, reset);
 
-  function onSubmit(data: ItemFormData) {
+  async function onSubmit(data: ItemFormData) {
     console.log("Submitted", data);
-    saveItem(data);
+    await saveItem(data);
     navigate("/");
   }
 

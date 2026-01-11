@@ -220,7 +220,7 @@ export async function getItems() {
 }
 
 export function getItem(id: string) {
-  return items.find((item) => item.id === id);
+  return axios.get<Item>(`${ITEM_URL}/${id}`);
 }
 
 export function saveItem(item: ItemFormData) {
