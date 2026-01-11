@@ -232,7 +232,5 @@ export function saveItem(item: ItemFormData) {
 }
 
 export function deleteItem(id: string) {
-  const itemInDb = items.find((i) => i.id === id);
-  if (itemInDb) items.splice(items.indexOf(itemInDb), 1);
-  return itemInDb;
+  return axios.delete(`${ITEM_URL}/${id}`);
 }
