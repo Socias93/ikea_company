@@ -4,13 +4,13 @@ import { getCategories } from "../services/fakeCategoryService";
 import { useOutletContext } from "react-router-dom";
 import { paginate } from "../components/utils";
 import { ListGroup, Table, Pagination } from "../components/index";
-import { Category } from "../types";
+import { Category, Item } from "../types";
 
 const DEFAULT_CATEGORY = { id: "", name: "All Categories" };
 const PAGE_SIZE = 10;
 
 function HomePage() {
-  const items = getItems();
+  const [items, setItems] = useState<Item[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState(DEFAULT_CATEGORY);
   const [selectedPage, setSelectedPage] = useState(1);
@@ -21,8 +21,15 @@ function HomePage() {
 
   useEffect(() => {
     async function fetch() {
-      const { data: categories } = await getCategories();
-      setCategories(categories);
+      try {
+        const { data: categories } = await getCategories();
+        setCategories(categories);
+
+        const { data: items } = await getItems();
+        setItems(items);
+      } catch (err) {
+        console.log("Failed to fetch categories", err);
+      }
     }
 
     fetch();

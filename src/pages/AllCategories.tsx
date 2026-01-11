@@ -1,12 +1,12 @@
 import { useNavigate, useOutletContext } from "react-router-dom";
-import { getItems } from "../services/fakeItemService";
 import { useEffect, useState } from "react";
-import { Category } from "../types";
+import { Category, Item } from "../types";
 import { deleteCategory, getCategories } from "../services/fakeCategoryService";
+import { getItems } from "../services/fakeItemService";
 
 function AllCategories() {
   const [categories, setCategories] = useState<Category[]>([]);
-  const items = getItems();
+  const [items, setItems] = useState<Item[]>([]);
   const navigate = useNavigate();
   const { searchValue } = useOutletContext<{
     searchValue: string;
@@ -17,6 +17,9 @@ function AllCategories() {
       try {
         const { data: categories } = await getCategories();
         setCategories(categories);
+
+        const { data: items } = await getItems();
+        setItems(items);
       } catch (err) {
         console.log("Failed to fetch categories", err);
       }

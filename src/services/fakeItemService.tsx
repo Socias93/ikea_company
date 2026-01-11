@@ -1,5 +1,8 @@
+import axios from "axios";
 import { Item, ItemFormData } from "../types";
 import { getCategories } from "./fakeCategoryService";
+
+const ITEM_URL = "http://localhost:5555/api/items";
 
 const items: Item[] = [
   {
@@ -212,8 +215,8 @@ const items: Item[] = [
   },
 ];
 
-export function getItems() {
-  return items;
+export async function getItems() {
+  return axios.get<Item[]>(ITEM_URL);
 }
 
 export function getItem(id: string) {
