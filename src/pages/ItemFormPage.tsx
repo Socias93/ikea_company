@@ -79,8 +79,9 @@ function ItemFormPage() {
               </div>
             </div>
 
-            <div className="text-center">
+            <div className="text-center d-flex justify-content-center gap-3">
               <button className="btn btn-outline-primary">Save</button>
+              {id && <button className="btn btn-outline-danger">delete</button>}
             </div>
           </div>
         </div>
