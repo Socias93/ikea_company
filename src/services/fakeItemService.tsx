@@ -224,22 +224,11 @@ export function getItem(id: string) {
 }
 
 export function saveItem(item: ItemFormData) {
-  const categoryInDb = getCategories().find((c) => c.id === item.categoryId);
-  if (!categoryInDb) throw new Error("Category not found");
-
-  const itemInDb = items.find((i) => i.id === item.id) || ({} as Item);
-
-  itemInDb.name = item.name;
-  itemInDb.category = categoryInDb;
-  itemInDb.numberInStock = item.numberInStock;
-  itemInDb.price = item.price;
-
-  if (!itemInDb.id) {
-    itemInDb.id = Date.now().toString();
-    items.push(itemInDb);
+  if (item.id) {
+    return axios.put(`${ITEM_URL}/${item.id}`, item);
+  } else {
+    return axios.post(ITEM_URL, item);
   }
-
-  return itemInDb;
 }
 
 export function deleteItem(id: string) {
